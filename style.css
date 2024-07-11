@@ -1,0 +1,43 @@
+@import url(https://lsong.org/css/stylesheet.css);
+@import url(https://lsong.org/stylesheets/util.css);
+@import url(https://lsong.org/stylesheets/form.css);
+@import url(https://lsong.org/stylesheets/flex.css);
+
+
+#message {
+  width: 100%;
+}
+
+#output {
+  height: 350px;
+  list-style: none;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+}
+
+li {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ddd;
+  position: relative;
+  margin-top: 2em;
+  word-break: break-all;
+}
+
+li:before {
+  display: block;
+  content: attr(data-topic);
+  position: absolute;
+  top: -1.5em;
+}
+
+li:after {
+  color: #999;
+  display: block;
+  content: attr(data-time);
+  position: absolute;
+  top: -1.5em;
+  right: 10px;
+}
