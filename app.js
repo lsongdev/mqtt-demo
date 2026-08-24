@@ -1,6 +1,6 @@
 import mqtt from 'https://esm.sh/mqtt';
-import { ready } from 'https://lsong.org/scripts/dom.js';
-import { now } from 'https://lsong.org/scripts/time.js';
+import { ready } from 'https://lsong.org/scripts/dom/index.js';
+import { now } from 'https://lsong.org/scripts/datetime/time.js';
 
 
 ready(async () => {
