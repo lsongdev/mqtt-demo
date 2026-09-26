@@ -77,6 +77,29 @@
         <input id="message" type="text" placeholder="Message">
         <button id="send" disabled>send</button>
       </div>
+      <div class="quick-actions-header">
+        <h3>Quick send</h3>
+        <button id="add-quick-action" type="button">Add button</button>
+      </div>
+      <div id="quick-actions" class="quick-actions" aria-label="Quick send buttons"></div>
+      <form id="quick-action-form" class="quick-action-form" hidden>
+        <div class="form-field">
+          <label for="quick-label">Button text</label>
+          <input id="quick-label" type="text" maxlength="40" required placeholder="e.g. Turn on">
+        </div>
+        <div class="form-field">
+          <label for="quick-topic">Topic</label>
+          <input id="quick-topic" type="text" required placeholder="topic">
+        </div>
+        <div class="form-field">
+          <label for="quick-message">Message</label>
+          <textarea id="quick-message" rows="3" required placeholder="Message to publish"></textarea>
+        </div>
+        <div class="quick-action-form-buttons">
+          <button type="submit">Save button</button>
+          <button id="cancel-quick-action" type="button">Cancel</button>
+        </div>
+      </form>
     </section>
 
     <hr />

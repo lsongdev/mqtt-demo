@@ -4,6 +4,55 @@
   width: 100%;
 }
 
+.quick-actions-header,
+.quick-action-form-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.quick-actions-header h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quick-action {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+.quick-send-button {
+  border-radius: 6px 0 0 6px;
+}
+
+.quick-action-remove {
+  border-radius: 0 6px 6px 0;
+  padding-inline: 0.6rem;
+}
+
+.quick-action-form {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.quick-action-form[hidden] {
+  display: none;
+}
+
+.quick-action-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+}
+
 #output {
   height: 350px;
   list-style: none;
