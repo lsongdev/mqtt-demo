@@ -61,26 +61,30 @@
       <div class="form">
         <div class="form-field">
           <label for="server">MQTT Server</label>
-          <input type="text" id="server" list="mqtt-servers" placeholder="mqtt server" value="wss://broker.emqx.io:8084/mqtt" />
+          <div class="input-group mqtt-controls">
+            <input class="input" type="text" id="server" list="mqtt-servers" placeholder="mqtt server" value="wss://broker.emqx.io:8084/mqtt" />
+            <button class="button" id="connect">connect</button>
+            <button class="button" id="disconnect" disabled>disconnect</button>
+          </div>
           <datalist id="mqtt-servers">
             <option value="wss://broker.emqx.io:8084/mqtt">EMQX</option>
             <option value="wss://broker.hivemq.com:8884/mqtt">HiveMQ</option>
             <option value="wss://test.mosquitto.org:8081/mqtt">Mosquitto</option>
           </datalist>
-          <button id="connect">connect</button>
-          <button id="disconnect" disabled>disconnect</button>
         </div>
         <div class="form-field">
           <label for="topic">Topic</label>
-          <input id="topic" type="text" placeholder="topic" value="test">
-          <button id="subscribe" disabled>subscribe</button>
-          <button id="unsubscribe" disabled>unsubscribe</button>
+          <div class="input-group mqtt-controls">
+            <input class="input" id="topic" type="text" placeholder="topic" value="test">
+            <button class="button" id="subscribe" disabled>subscribe</button>
+            <button class="button" id="unsubscribe" disabled>unsubscribe</button>
+          </div>
         </div>
       </div>
       <ul class="form-field" id="output"></ul>
-      <div class="form-field flex">
-        <input id="message" type="text" placeholder="Message">
-        <button id="send" disabled>send</button>
+      <div class="form-field input-group">
+        <input class="input" id="message" type="text" aria-label="Message" placeholder="Message">
+        <button class="button" id="send" disabled>send</button>
       </div>
       <div class="quick-actions-header">
         <h3>Quick send</h3>
