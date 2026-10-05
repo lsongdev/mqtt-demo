@@ -61,7 +61,12 @@
       <div class="form">
         <div class="form-field">
           <label for="server">MQTT Server</label>
-          <input type="text" id="server" placeholder="mqtt server" value="wss://broker.emqx.io:8084/mqtt" />
+          <input type="text" id="server" list="mqtt-servers" placeholder="mqtt server" value="wss://broker.emqx.io:8084/mqtt" />
+          <datalist id="mqtt-servers">
+            <option value="wss://broker.emqx.io:8084/mqtt">EMQX</option>
+            <option value="wss://broker.hivemq.com:8884/mqtt">HiveMQ</option>
+            <option value="wss://test.mosquitto.org:8081/mqtt">Mosquitto</option>
+          </datalist>
           <button id="connect">connect</button>
           <button id="disconnect" disabled>disconnect</button>
         </div>
@@ -79,27 +84,12 @@
       </div>
       <div class="quick-actions-header">
         <h3>Quick send</h3>
-        <button id="add-quick-action" type="button">Add button</button>
+        <form id="quick-action-form" class="quick-action-form">
+          <input id="quick-label" type="text" maxlength="40" required aria-label="Name" placeholder="Name">
+          <button id="add-quick-action" type="submit">Add button</button>
+        </form>
       </div>
       <div id="quick-actions" class="quick-actions" aria-label="Quick send buttons"></div>
-      <form id="quick-action-form" class="quick-action-form" hidden>
-        <div class="form-field">
-          <label for="quick-label">Button text</label>
-          <input id="quick-label" type="text" maxlength="40" required placeholder="e.g. Turn on">
-        </div>
-        <div class="form-field">
-          <label for="quick-topic">Topic</label>
-          <input id="quick-topic" type="text" required placeholder="topic">
-        </div>
-        <div class="form-field">
-          <label for="quick-message">Message</label>
-          <textarea id="quick-message" rows="3" required placeholder="Message to publish"></textarea>
-        </div>
-        <div class="quick-action-form-buttons">
-          <button type="submit">Save button</button>
-          <button id="cancel-quick-action" type="button">Cancel</button>
-        </div>
-      </form>
     </section>
 
     <hr />

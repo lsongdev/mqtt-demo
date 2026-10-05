@@ -1,6 +1,5 @@
 import mqtt from 'https://esm.sh/mqtt';
 import { ready } from 'https://lsong.org/scripts/dom/index.js';
-import { now } from 'https://lsong.org/scripts/datetime/time.js';
 
 ready(async () => {
   const server = document.getElementById('server');
@@ -16,12 +15,17 @@ ready(async () => {
   const output = document.getElementById('output');
   const quickActions = document.getElementById('quick-actions');
   const quickActionForm = document.getElementById('quick-action-form');
-  const addQuickAction = document.getElementById('add-quick-action');
-  const cancelQuickAction = document.getElementById('cancel-quick-action');
   const quickLabel = document.getElementById('quick-label');
-  const quickTopic = document.getElementById('quick-topic');
-  const quickMessage = document.getElementById('quick-message');
   const QUICK_ACTIONS_KEY = 'mqtt-quick-actions';
+  const timeFormatter = new Intl.DateTimeFormat('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23',
+  });
 
   let quickActionItems = [];
   try {
@@ -88,7 +92,7 @@ ready(async () => {
   const handleMessage = (topic, message) => {
     const li = document.createElement('li');
     li.setAttribute('data-topic', topic);
-    li.setAttribute('data-time', now());
+    li.setAttribute('data-time', timeFormatter.format(new Date()));
     li.textContent = message.toString();
     output.appendChild(li);
     output.scrollTop = output.scrollHeight;
@@ -111,24 +115,23 @@ ready(async () => {
   send.addEventListener('click', () => {
     client.publish(topic.value, message.value);
   });
-  addQuickAction.addEventListener('click', () => {
-    quickActionForm.hidden = false;
-    quickLabel.focus();
-  });
-  cancelQuickAction.addEventListener('click', () => {
-    quickActionForm.reset();
-    quickActionForm.hidden = true;
-  });
   quickActionForm.addEventListener('submit', (event) => {
     event.preventDefault();
+    if (!quickLabel.value.trim()) {
+      quickLabel.focus();
+      return;
+    }
+    if (!topic.value.trim()) {
+      topic.focus();
+      return;
+    }
     quickActionItems.push({
       label: quickLabel.value.trim(),
-      topic: quickTopic.value.trim(),
-      message: quickMessage.value,
+      topic: topic.value.trim(),
+      message: message.value,
     });
     saveQuickActions();
     quickActionForm.reset();
-    quickActionForm.hidden = true;
   });
   renderQuickActions();
 });

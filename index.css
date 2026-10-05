@@ -5,7 +5,7 @@
 }
 
 .quick-actions-header,
-.quick-action-form-buttons {
+.quick-action-form {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,6 +14,24 @@
 
 .quick-actions-header h3 {
   margin: 1rem 0 0.5rem;
+}
+
+.quick-actions-header {
+  flex-wrap: wrap;
+}
+
+.quick-action-form {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.quick-action-form input {
+  min-width: 0;
+  width: 10rem;
+}
+
+.quick-action-form button {
+  white-space: nowrap;
 }
 
 .quick-actions {
@@ -34,23 +52,6 @@
 .quick-action-remove {
   border-radius: 0 6px 6px 0;
   padding-inline: 0.6rem;
-}
-
-.quick-action-form {
-  margin-top: 1rem;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.quick-action-form[hidden] {
-  display: none;
-}
-
-.quick-action-form textarea {
-  box-sizing: border-box;
-  width: 100%;
-  resize: vertical;
 }
 
 #output {
