@@ -4,30 +4,26 @@
   width: 100%;
 }
 
-.quick-actions-header,
-.quick-action-form {
+.quick-actions-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.75rem;
 }
 
 .quick-actions-header h3 {
-  margin: 1rem 0 0.5rem;
-}
-
-.quick-actions-header {
-  flex-wrap: wrap;
+  margin: 0;
 }
 
 .quick-action-form {
-  flex: 1;
-  justify-content: flex-end;
+  flex: 0 1 20rem;
+  max-width: 100%;
 }
 
 .quick-action-form input {
   min-width: 0;
-  width: 10rem;
 }
 
 .quick-action-form button {
@@ -59,30 +55,47 @@
   list-style: none;
   overflow-y: auto;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
 }
 
-li {
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #ddd;
-  position: relative;
-  margin-top: 2em;
-  word-break: break-all;
+#output li {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-subtle);
+  color: var(--color-text);
+  margin: 0;
 }
 
-li:before {
-  display: block;
-  content: attr(data-topic);
-  position: absolute;
-  top: -1.5em;
+#output li + li {
+  margin-top: 10px;
 }
 
-li:after {
-  color: #999;
-  display: block;
-  content: attr(data-time);
-  position: absolute;
-  top: -1.5em;
-  right: 10px;
+.message-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.message-topic {
+  flex: 1 1 12rem;
+  min-width: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.message-header time {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.message-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
 }

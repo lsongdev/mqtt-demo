@@ -1,5 +1,6 @@
 import mqtt from 'https://esm.sh/mqtt';
 import { ready } from 'https://lsong.org/scripts/dom/index.js';
+import { now, format } from 'https://lsong.org/scripts/datetime/time.js';
 
 ready(async () => {
   const server = document.getElementById('server');
@@ -17,15 +18,6 @@ ready(async () => {
   const quickActionForm = document.getElementById('quick-action-form');
   const quickLabel = document.getElementById('quick-label');
   const QUICK_ACTIONS_KEY = 'mqtt-quick-actions';
-  const timeFormatter = new Intl.DateTimeFormat('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hourCycle: 'h23',
-  });
 
   let quickActionItems = [];
   try {
@@ -42,7 +34,7 @@ ready(async () => {
       wrapper.className = 'quick-action';
       const button = document.createElement('button');
       button.type = 'button';
-      button.className = 'quick-send-button';
+      button.className = 'button quick-send-button';
       button.textContent = item.label;
       button.title = `${item.topic}: ${item.message}`;
       button.disabled = !client;
@@ -51,7 +43,7 @@ ready(async () => {
       });
       const remove = document.createElement('button');
       remove.type = 'button';
-      remove.className = 'quick-action-remove';
+      remove.className = 'button quick-action-remove';
       remove.textContent = '×';
       remove.title = `Remove ${item.label}`;
       remove.setAttribute('aria-label', `Remove ${item.label}`);
@@ -91,9 +83,20 @@ ready(async () => {
   };
   const handleMessage = (topic, message) => {
     const li = document.createElement('li');
-    li.setAttribute('data-topic', topic);
-    li.setAttribute('data-time', timeFormatter.format(new Date()));
-    li.textContent = message.toString();
+    const header = document.createElement('div');
+    header.className = 'message-header';
+    const topicLabel = document.createElement('span');
+    topicLabel.className = 'message-topic';
+    topicLabel.textContent = topic;
+    const timestamp = now();
+    const time = document.createElement('time');
+    time.dateTime = timestamp.toISOString();
+    time.textContent = format(timestamp, '{datetime}');
+    header.append(topicLabel, time);
+    const body = document.createElement('div');
+    body.className = 'message-body';
+    body.textContent = message.toString();
+    li.append(header, body);
     output.appendChild(li);
     output.scrollTop = output.scrollHeight;
   };
